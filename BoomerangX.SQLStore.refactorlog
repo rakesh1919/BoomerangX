@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Operations Version="1.0" xmlns="http://schemas.microsoft.com/sqlserver/dac/Serialization/2012/02">
+  <Operation Name="Rename Refactor" Key="9d748c6b-2815-4cf8-a9e1-6ae171bbd1be" ChangeDateTime="07/29/2014 19:05:13">
+    <Property Name="ElementName" Value="[dbo].[FK_ProductAdhits_ToTable]" />
+    <Property Name="ElementType" Value="SqlForeignKeyConstraint" />
+    <Property Name="ParentElementName" Value="[dbo].[ProductAdhits]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="[FK_ProductAdhits_Product]" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="96499e21-a818-4766-8939-b1e9c480aeef" ChangeDateTime="07/29/2014 19:05:59">
+    <Property Name="ElementName" Value="[dbo].[ProductSales].[QtyOnhand]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[ProductSales]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="QtyOnHand" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="f341259a-021c-4d3d-b56c-bbbcbcdb217d" ChangeDateTime="07/29/2014 19:06:26">
+    <Property Name="ElementName" Value="[dbo].[ProductSales].[LastUpdate]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[ProductSales]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="LastUpdated" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="98adb9d1-d6c3-4bcc-9cf1-49d6460766c5" ChangeDateTime="07/29/2014 21:42:00">
+    <Property Name="ElementName" Value="[dbo].[ProspectMLOutput].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[ProspectMLOutput]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="ProspectId" />
+  </Operation>
+</Operations>

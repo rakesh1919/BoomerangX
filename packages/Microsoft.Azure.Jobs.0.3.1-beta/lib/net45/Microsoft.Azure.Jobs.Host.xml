@@ -1,0 +1,925 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Microsoft.Azure.Jobs.Host</name>
+    </assembly>
+    <members>
+        <member name="T:Microsoft.Azure.Jobs.Host.Protocols.AbortHostInstanceMessage">
+            <summary>Represents a request to abort the host instance.</summary>
+        </member>
+        <member name="T:Microsoft.Azure.Jobs.Host.Protocols.HostMessage">
+            <summary>Represents a message to any instance of a host.</summary>
+        </member>
+        <member name="P:Microsoft.Azure.Jobs.Host.Protocols.HostMessage.Type">
+            <summary>Gets or set the message type.</summary>
+        </member>
+        <member name="T:Microsoft.Azure.Jobs.Host.Protocols.PolymorphicJsonConverter">
+            <remarks>
+            Unlike $type in JSON.NET, this converter decouples the message data from the .NET class and assembly names.
+            It also allows emitting a type on the root object.
+            </remarks>
+        </member>
+        <member name="T:Microsoft.Azure.Jobs.Host.Protocols.BinderParameterDescriptor">
+            <summary>Represents a parameter bound to an IBinder.</summary>
+        </member>
+        <member name="T:Microsoft.Azure.Jobs.Host.Protocols.ParameterDescriptor">
+            <summary>Represents a parameter to an Azure Jobs function.</summary>
+        </member>
+        <member name="P:Microsoft.Azure.Jobs.Host.Protocols.ParameterDescriptor.Type">
+            <summary>Gets or sets the parameter type.</summary>
+        </member>
+        <member name="P:Microsoft.Azure.Jobs.Host.Protocols.ParameterDescriptor.Name">
+            <summary>Gets or sets the parameter name.</summary>
+        </member>
+        <member name="T:Microsoft.Azure.Jobs.Host.Protocols.BindingDataParameterDescriptor">
+            <summary>Represents a parameter bound to binding data.</summary>
+        </member>
+        <member name="T:Microsoft.Azure.Jobs.Host.Protocols.BlobParameterDescriptor">
+            <summary>Represents a parameter bound to a blob in Azure Storage.</summary>
+        </member>
+        <member name="P:Microsoft.Azure.Jobs.Host.Protocols.BlobParameterDescriptor.AccountName">
+            <summary>Gets or sets the name of the storage account.</summary>
+        </member>
+        <member name="P:Microsoft.Azure.Jobs.Host.Protocols.BlobParameterDescriptor.ContainerName">
+            <summary>Gets or sets the name of the container.</summary>
+        </member>
+        <member name="P:Microsoft.Azure.Jobs.Host.Protocols.BlobParameterDescriptor.BlobName">
+            <summary>Gets or sets the name of the blob.</summary>
+        </member>
+        <member name="P:Microsoft.Azure.Jobs.Host.Protocols.BlobParameterDescriptor.Access">
+            <summary>Gets or sets the kind of access the parameter has to the blob.</summary>
+        </member>
+        <member name="T:Microsoft.Azure.Jobs.Host.Protocols.BlobTriggerParameterDescriptor">
+            <summary>Represents a parameter triggered on a blob in Azure Storage.</summary>
+        </member>
+        <member name="P:Microsoft.Azure.Jobs.Host.Protocols.BlobTriggerParameterDescriptor.AccountName">
+            <summary>Gets or sets the name of the storage account.</summary>
+        </member>
+        <member name="P:Microsoft.Azure.Jobs.Host.Protocols.BlobTriggerParameterDescriptor.ContainerName">
+            <summary>Gets or sets the name of the container.</summary>
+        </member>
+        <member name="P:Microsoft.Azure.Jobs.Host.Protocols.BlobTriggerParameterDescriptor.BlobName">
+            <summary>Gets or sets the name of the blob.</summary>
+        </member>
+        <member name="P:Microsoft.Azure.Jobs.Host.Protocols.BlobTriggerParameterDescriptor.Access">
+            <summary>Gets or sets the kind of access the parameter has to the blob.</summary>
+        </member>
+        <member name="T:Microsoft.Azure.Jobs.Host.Protocols.CallAndOverrideMessage">
+            <summary>Represents a message to execute a function using override values for all parameters.</summary>
+        </member>
+        <member name="P:Microsoft.Azure.Jobs.Host.Protocols.CallAndOverrideMessage.Id">
+            <summary>Gets or sets the ID of this request.</summary>
+        </member>
+        <member name="P:Microsoft.Azure.Jobs.Host.Protocols.CallAndOverrideMessage.FunctionId">
+            <summary>Gets or sets the ID of the function to run.</summary>
+        </member>
+        <member name="P:Microsoft.Azure.Jobs.Host.Protocols.CallAndOverrideMessage.Arguments">
+            <summary>Gets or sets the arguments to the function.</summary>
+        </member>
+        <member name="P:Microsoft.Azure.Jobs.Host.Protocols.CallAndOverrideMessage.Reason">
+            <summary>Gets or sets the reason the function executed.</summary>
+        </member>
+        <member name="P:Microsoft.Azure.Jobs.Host.Protocols.CallAndOverrideMessage.ParentId">
+            <summary>Gets or sets the ID of the parent function, if any.</summary>
+        </member>
+        <member name="T:Microsoft.Azure.Jobs.Host.Protocols.CallerSuppliedParameterDescriptor">
+            <summary>Represents a parameter bound to a caller-supplied value.</summary>
+        </member>
+        <member name="T:Microsoft.Azure.Jobs.Host.Protocols.CancellationTokenParameterDescriptor">
+            <summary>Represents a parameter bound to a cancellation token.</summary>
+        </member>
+        <member name="T:Microsoft.Azure.Jobs.Host.Protocols.CloudStorageAccountParameterDescriptor">
+            <summary>Represents a parameter bound to an Azure Storage account.</summary>
+        </member>
+        <member name="P:Microsoft.Azure.Jobs.Host.Protocols.CloudStorageAccountParameterDescriptor.AccountName">
+            <summary>Gets or sets the name of the storage account.</summary>
+        </member>
+        <member name="T:Microsoft.Azure.Jobs.Host.Protocols.ConnectionStringDescriptor">
+            <summary>Represents a connection string used by a host instance.</summary>
+        </member>
+        <member name="P:Microsoft.Azure.Jobs.Host.Protocols.ConnectionStringDescriptor.Type">
+            <summary>Gets or sets the connection string type.</summary>
+        </member>
+        <member name="T:Microsoft.Azure.Jobs.Host.Protocols.ConsoleOutputParameterDescriptor">
+            <summary>Represents a parameter bound to a <see cref="T:System.IO.TextWriter"/> for console ouput.</summary>
+        </member>
+        <member name="T:Microsoft.Azure.Jobs.Host.Protocols.ContainerNames">
+            <summary>Provides well-known container names in the protocol.</summary>
+        </member>
+        <member name="F:Microsoft.Azure.Jobs.Host.Protocols.ContainerNames.HostOutputContainerName">
+            <summary>The name of the container where protocol messages from the host are stored.</summary>
+        </member>
+        <member name="F:Microsoft.Azure.Jobs.Host.Protocols.ContainerNames.HostArchiveContainerName">
+            <summary>
+            The name of the container where protocol messages from the host are archived after processing.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Azure.Jobs.Host.Protocols.CredentialsDescriptor">
+            <summary>Represents credentials used by a host instance.</summary>
+        </member>
+        <member name="P:Microsoft.Azure.Jobs.Host.Protocols.CredentialsDescriptor.ConnectionStrings">
+            <summary>Gets or sets the connection strings used by a host intsance.</summary>
+        </member>
+        <member name="T:Microsoft.Azure.Jobs.Host.Protocols.ExecutionReason">
+            <summary>Defines constants for reasons a function is executed.</summary>
+        </member>
+        <member name="F:Microsoft.Azure.Jobs.Host.Protocols.ExecutionReason.AutomaticTrigger">
+            <summary>Indicates a function executed because of an automatic trigger.</summary>
+        </member>
+        <member name="F:Microsoft.Azure.Jobs.Host.Protocols.ExecutionReason.HostCall">
+            <summary>Indicates a function executed because of a programatic host call.</summary>
+        </member>
+        <member name="F:Microsoft.Azure.Jobs.Host.Protocols.ExecutionReason.Dashboard">
+            <summary>Indicates a function executed because of a request from a dashboard user.</summary>
+        </member>
+        <member name="T:Microsoft.Azure.Jobs.Host.Protocols.FunctionCompletedMessage">
+            <summary>Represents a message indicating that a function completed execution.</summary>
+        </member>
+        <member name="T:Microsoft.Azure.Jobs.Host.Protocols.FunctionStartedMessage">
+            <summary>Represents a message indicating that a function started executing.</summary>
+        </member>
+        <member name="T:Microsoft.Azure.Jobs.Host.Protocols.HostOutputMessage">
+            <summary>Represents a message from a host instance.</summary>
+        </member>
+        <member name="T:Microsoft.Azure.Jobs.Host.Protocols.PersistentQueueMessage">
+            <summary>Represents a message in a persistent queue.</summary>
+        </member>
+        <member name="P:Microsoft.Azure.Jobs.Host.Protocols.PersistentQueueMessage.Type">
+            <summary>Gets or sets the message type.</summary>
+        </member>
+        <member name="P:Microsoft.Azure.Jobs.Host.Protocols.PersistentQueueMessage.EnqueuedOn">
+            <summary>Gets or sets the time the message was enqueued.</summary>
+        </member>
+        <member name="P:Microsoft.Azure.Jobs.Host.Protocols.PersistentQueueMessage.PopReceipt">
+            <summary>Gets or sets a receipt from dequeuing the message.</summary>
+        </member>
+        <member name="F:Microsoft.Azure.Jobs.Host.Protocols.HostOutputMessage.MessageTypeKeyName">
+            <summary>The name of the key used to store the message type in metadata.</summary>
+        </member>
+        <member name="P:Microsoft.Azure.Jobs.Host.Protocols.HostOutputMessage.HostInstanceId">
+            <summary>Gets or sets the host instance ID.</summary>
+        </member>
+        <member name="P:Microsoft.Azure.Jobs.Host.Protocols.HostOutputMessage.HostDisplayName">
+            <summary>Gets or sets a short, non-unique name for the host suitable for display purposes.</summary>
+        </member>
+        <member name="P:Microsoft.Azure.Jobs.Host.Protocols.HostOutputMessage.SharedQueueName">
+            <summary>
+            Gets or sets the name of the shared queue to which all instances of this host listen, if any.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Azure.Jobs.Host.Protocols.HostOutputMessage.InstanceQueueName">
+            <summary>
+            Gets or sets the name of the shared queue to which only this host instance listens, if any.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Azure.Jobs.Host.Protocols.HostOutputMessage.Heartbeat">
+            <summary>Gets or sets the heartbeat for the host instance, if any.</summary>
+        </member>
+        <member name="P:Microsoft.Azure.Jobs.Host.Protocols.HostOutputMessage.Credentials">
+            <summary>Gets or sets the credentials used by the host instance.</summary>
+        </member>
+        <member name="P:Microsoft.Azure.Jobs.Host.Protocols.HostOutputMessage.WebJobRunIdentifier">
+            <summary>Gets or sets the ID of the web job under which the function is running, if any.</summary>
+        </member>
+        <member name="F:Microsoft.Azure.Jobs.Host.Protocols.FunctionStartedMessage.FunctionInstanceIdKey">
+            <summary>The name of the key used to store the function instance ID in metadata.</summary>
+        </member>
+        <member name="P:Microsoft.Azure.Jobs.Host.Protocols.FunctionStartedMessage.FunctionInstanceId">
+            <summary>Gets or sets the function instance ID.</summary>
+        </member>
+        <member name="P:Microsoft.Azure.Jobs.Host.Protocols.FunctionStartedMessage.Function">
+            <summary>Gets or sets the function executing.</summary>
+        </member>
+        <member name="P:Microsoft.Azure.Jobs.Host.Protocols.FunctionStartedMessage.Arguments">
+            <summary>Gets or sets the function's argument values.</summary>
+        </member>
+        <member name="P:Microsoft.Azure.Jobs.Host.Protocols.FunctionStartedMessage.ParentId">
+            <summary>Gets or sets the ID of the ancestor function instance.</summary>
+        </member>
+        <member name="P:Microsoft.Azure.Jobs.Host.Protocols.FunctionStartedMessage.Reason">
+            <summary>Gets or sets the reason the function executed.</summary>
+        </member>
+        <member name="P:Microsoft.Azure.Jobs.Host.Protocols.FunctionStartedMessage.StartTime">
+            <summary>Gets or sets the time the function started executing.</summary>
+        </member>
+        <member name="P:Microsoft.Azure.Jobs.Host.Protocols.FunctionStartedMessage.OutputBlob">
+            <summary>Gets or sets the path of the blob containing console output from the function.</summary>
+        </member>
+        <member name="P:Microsoft.Azure.Jobs.Host.Protocols.FunctionStartedMessage.ParameterLogBlob">
+            <summary>Gets or sets the path of the blob containing per-parameter logging data.</summary>
+        </member>
+        <member name="P:Microsoft.Azure.Jobs.Host.Protocols.FunctionCompletedMessage.EndTime">
+            <summary>Gets or sets the time the function stopped executing.</summary>
+        </member>
+        <member name="P:Microsoft.Azure.Jobs.Host.Protocols.FunctionCompletedMessage.Succeeded">
+            <summary>Gets a value indicating whether the function completed successfully.</summary>
+        </member>
+        <member name="P:Microsoft.Azure.Jobs.Host.Protocols.FunctionCompletedMessage.Failure">
+            <summary>Gets or sets the details of the function's failure.</summary>
+            <remarks>If the function succeeded, this value is <see langword="null"/>.</remarks>
+        </member>
+        <member name="P:Microsoft.Azure.Jobs.Host.Protocols.FunctionCompletedMessage.ParameterLogs">
+            <summary>Gets or sets the parameter logs.</summary>
+        </member>
+        <member name="T:Microsoft.Azure.Jobs.Host.Protocols.FunctionDescriptor">
+            <summary>Represents an Azure Jobs function.</summary>
+        </member>
+        <member name="P:Microsoft.Azure.Jobs.Host.Protocols.FunctionDescriptor.Id">
+            <summary>Gets or sets the ID of the function.</summary>
+        </member>
+        <member name="P:Microsoft.Azure.Jobs.Host.Protocols.FunctionDescriptor.FullName">
+            <summary>Gets or sets the fully qualified name of the function.</summary>
+        </member>
+        <member name="P:Microsoft.Azure.Jobs.Host.Protocols.FunctionDescriptor.ShortName">
+            <summary>Gets or sets the display name of the function.</summary>
+        </member>
+        <member name="P:Microsoft.Azure.Jobs.Host.Protocols.FunctionDescriptor.Parameters">
+            <summary>Gets or sets the function's parameters.</summary>
+        </member>
+        <member name="T:Microsoft.Azure.Jobs.Host.Protocols.FunctionFailure">
+            <summary>Represents a function's execution failure information.</summary>
+        </member>
+        <member name="P:Microsoft.Azure.Jobs.Host.Protocols.FunctionFailure.ExceptionType">
+            <summary>Gets or sets the name of the type of exception that occurred.</summary>
+        </member>
+        <member name="P:Microsoft.Azure.Jobs.Host.Protocols.FunctionFailure.ExceptionDetails">
+            <summary>Gets or sets the details of the exception that occurred.</summary>
+        </member>
+        <member name="T:Microsoft.Azure.Jobs.Host.Protocols.FunctionStartedMessageExtensions">
+            <summary>Provides extension methods for the <see cref="T:Microsoft.Azure.Jobs.Host.Protocols.FunctionStartedMessage"/> class.</summary>
+        </member>
+        <member name="M:Microsoft.Azure.Jobs.Host.Protocols.FunctionStartedMessageExtensions.FormatReason(Microsoft.Azure.Jobs.Host.Protocols.FunctionStartedMessage)">
+            <summary>Format's a function's <see cref="T:Microsoft.Azure.Jobs.Host.Protocols.ExecutionReason"/> in a display-friendly text format.</summary>
+            <param name="message">The function whose reason to format.</param>
+            <returns>A function's <see cref="T:Microsoft.Azure.Jobs.Host.Protocols.ExecutionReason"/> in a display-friendly text format.</returns>
+        </member>
+        <member name="T:Microsoft.Azure.Jobs.Host.Protocols.HeartbeatCommand">
+            <summary>Represents a command that signals a heartbeat from a running host instance.</summary>
+        </member>
+        <member name="T:Microsoft.Azure.Jobs.Host.Protocols.IHeartbeatCommand">
+            <summary>Defines a command that signals a heartbeat from a running host instance.</summary>
+        </member>
+        <member name="M:Microsoft.Azure.Jobs.Host.Protocols.IHeartbeatCommand.Beat">
+            <summary>Signals a heartbeat from a running host instance.</summary>
+        </member>
+        <member name="M:Microsoft.Azure.Jobs.Host.Protocols.HeartbeatCommand.#ctor(Microsoft.WindowsAzure.Storage.CloudStorageAccount,System.String,System.String)">
+            <summary>Initializes a new instance of the <see cref="T:Microsoft.Azure.Jobs.Host.Protocols.HeartbeatCommand"/> class.</summary>
+            <param name="account">The storage account in which to write the heartbeat.</param>
+            <param name="containerName">The name of the container in which to write the heartbeat.</param>
+            <param name="blobName">The name of the heartbeat blob (including the directory name, if any).</param>
+        </member>
+        <member name="M:Microsoft.Azure.Jobs.Host.Protocols.HeartbeatCommand.Beat">
+            <inheritdoc />
+        </member>
+        <member name="T:Microsoft.Azure.Jobs.Host.Protocols.HeartbeatDescriptor">
+            <summary>Represents the definition of a host instance heartbeat blob.</summary>
+            <remarks>While it is running, the host instance periodically updates the blob's LastModified time.</remarks>
+        </member>
+        <member name="P:Microsoft.Azure.Jobs.Host.Protocols.HeartbeatDescriptor.SharedContainerName">
+            <summary>Gets or sets the name of the heartbeat container shared by all instances of the host.</summary>
+        </member>
+        <member name="P:Microsoft.Azure.Jobs.Host.Protocols.HeartbeatDescriptor.SharedDirectoryName">
+            <summary>
+            Gets or sets the name of the directory in <see cref="P:Microsoft.Azure.Jobs.Host.Protocols.HeartbeatDescriptor.SharedContainerName"/> shared by all instances of the
+            host.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Azure.Jobs.Host.Protocols.HeartbeatDescriptor.InstanceBlobName">
+            <summary>
+            Gets or sets the name of the blob in <see cref="P:Microsoft.Azure.Jobs.Host.Protocols.HeartbeatDescriptor.SharedDirectoryName"/> mainted by this host instance.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Azure.Jobs.Host.Protocols.HeartbeatDescriptor.ExpirationInSeconds">
+            <summary>
+            Gets or sets the number of seconds after the blob's LastModified time during which the heartbeat is still
+            valid.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Azure.Jobs.Host.Protocols.HostStartedMessage">
+            <summary>Represents a message indicating that a host instance started.</summary>
+        </member>
+        <member name="P:Microsoft.Azure.Jobs.Host.Protocols.HostStartedMessage.Functions">
+            <summary>Gets or sets the functions the host instance contains.</summary>
+        </member>
+        <member name="T:Microsoft.Azure.Jobs.Host.Protocols.IPersistentQueueWriter`1">
+            <summary>Defines a persistent queue writer.</summary>
+            <typeparam name="T">The type of messages in the queue.</typeparam>
+        </member>
+        <member name="M:Microsoft.Azure.Jobs.Host.Protocols.IPersistentQueueWriter`1.Enqueue(`0)">
+            <summary>Adds a message to the queue.</summary>
+            <param name="message">The message to enqueue.</param>
+        </member>
+        <member name="T:Microsoft.Azure.Jobs.Host.Protocols.JsonTypeNameAttribute">
+            <summary>
+            Provides a key to use in place of the .NET type name when deserializing polymophic objects using
+            <see cref="T:Microsoft.Azure.Jobs.Host.Protocols.PolymorphicJsonConverter"/>.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Azure.Jobs.Host.Protocols.LocalBlobDescriptor">
+            <summary>Represents a blob in the same storage account as the entity that references it.</summary>
+        </member>
+        <member name="P:Microsoft.Azure.Jobs.Host.Protocols.LocalBlobDescriptor.ContainerName">
+            <summary>Gets or sets the container name.</summary>
+        </member>
+        <member name="P:Microsoft.Azure.Jobs.Host.Protocols.LocalBlobDescriptor.BlobName">
+            <summary>Gets or sets the blob name.</summary>
+        </member>
+        <member name="T:Microsoft.Azure.Jobs.Host.Protocols.NullHeartbeatCommand">
+            <summary>Represents a null object implementation of <see cref="T:Microsoft.Azure.Jobs.Host.Protocols.IHeartbeatCommand"/>.</summary>
+        </member>
+        <member name="M:Microsoft.Azure.Jobs.Host.Protocols.NullHeartbeatCommand.Beat">
+            <inheritdoc />
+        </member>
+        <member name="T:Microsoft.Azure.Jobs.Host.Protocols.ParameterLog">
+            <summary>Represents a function parameter log.</summary>
+        </member>
+        <member name="P:Microsoft.Azure.Jobs.Host.Protocols.ParameterLog.Type">
+            <summary>Gets or sets the log type.</summary>
+        </member>
+        <member name="T:Microsoft.Azure.Jobs.Host.Protocols.PersistentQueueWriter`1">
+            <summary>Represents a persistent queue writer.</summary>
+            <typeparam name="T">The type of messages in the queue.</typeparam>
+        </member>
+        <member name="M:Microsoft.Azure.Jobs.Host.Protocols.PersistentQueueWriter`1.#ctor(Microsoft.WindowsAzure.Storage.Blob.CloudBlobClient)">
+            <summary>Initializes a new instance of the <see cref="T:Microsoft.Azure.Jobs.Host.Protocols.PersistentQueueWriter`1"/> class.</summary>
+            <param name="client">
+            A blob client for the storage account into which host output messages are written.
+            </param>
+        </member>
+        <member name="M:Microsoft.Azure.Jobs.Host.Protocols.PersistentQueueWriter`1.#ctor(Microsoft.WindowsAzure.Storage.Blob.CloudBlobContainer)">
+            <summary>Initializes a new instance of the <see cref="T:Microsoft.Azure.Jobs.Host.Protocols.PersistentQueueWriter`1"/> class.</summary>
+            <param name="container">The container into which host output messages are written.</param>
+        </member>
+        <member name="M:Microsoft.Azure.Jobs.Host.Protocols.PersistentQueueWriter`1.Enqueue(`0)">
+            <inheritdoc />
+        </member>
+        <member name="T:Microsoft.Azure.Jobs.Host.Protocols.QueueParameterDescriptor">
+            <summary>Represents a parameter bound to a queue in Azure Storage.</summary>
+        </member>
+        <member name="P:Microsoft.Azure.Jobs.Host.Protocols.QueueParameterDescriptor.AccountName">
+            <summary>Gets or sets the name of the storage account.</summary>
+        </member>
+        <member name="P:Microsoft.Azure.Jobs.Host.Protocols.QueueParameterDescriptor.QueueName">
+            <summary>Gets or sets the name of the queue.</summary>
+        </member>
+        <member name="P:Microsoft.Azure.Jobs.Host.Protocols.QueueParameterDescriptor.Access">
+            <summary>Gets or sets the kind of access the parameter has to the queue.</summary>
+        </member>
+        <member name="T:Microsoft.Azure.Jobs.Host.Protocols.QueueTriggerParameterDescriptor">
+            <summary>Represents a parameter triggered on a queue in Azure Storage.</summary>
+        </member>
+        <member name="P:Microsoft.Azure.Jobs.Host.Protocols.QueueTriggerParameterDescriptor.AccountName">
+            <summary>Gets or sets the name of the storage account.</summary>
+        </member>
+        <member name="P:Microsoft.Azure.Jobs.Host.Protocols.QueueTriggerParameterDescriptor.QueueName">
+            <summary>Gets or sets the name of the queue.</summary>
+        </member>
+        <member name="T:Microsoft.Azure.Jobs.Host.Protocols.ServiceBusConnectionStringDescriptor">
+            <summary>Represents an Azure Service Bus account connection string.</summary>
+        </member>
+        <member name="P:Microsoft.Azure.Jobs.Host.Protocols.ServiceBusConnectionStringDescriptor.Namespace">
+            <summary>Gets or sets the namespace of the connection string.</summary>
+        </member>
+        <member name="P:Microsoft.Azure.Jobs.Host.Protocols.ServiceBusConnectionStringDescriptor.ConnectionString">
+            <summary>Gets or sets the connection string value.</summary>
+        </member>
+        <member name="T:Microsoft.Azure.Jobs.Host.Protocols.ServiceBusParameterDescriptor">
+            <summary>
+            Represents a parameter bound to an Azure Service Bus entity.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Azure.Jobs.Host.Protocols.ServiceBusParameterDescriptor.NamespaceName">
+            <summary>Gets or sets the name of the Service Bus namespace.</summary>
+        </member>
+        <member name="P:Microsoft.Azure.Jobs.Host.Protocols.ServiceBusParameterDescriptor.QueueOrTopicName">
+            <summary>Gets or sets the name of the queue or topic.</summary>
+        </member>
+        <member name="T:Microsoft.Azure.Jobs.Host.Protocols.ServiceBusTriggerParameterDescriptor">
+            <summary>
+            Represents a parameter bound to an Azure Service Bus entity.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Azure.Jobs.Host.Protocols.ServiceBusTriggerParameterDescriptor.NamespaceName">
+            <summary>Gets or sets the name of the Service Bus namespace.</summary>
+        </member>
+        <member name="P:Microsoft.Azure.Jobs.Host.Protocols.ServiceBusTriggerParameterDescriptor.QueueName">
+            <summary>Gets or sets the name of the queue.</summary>
+            <remarks>When binding to a subscription in a topic, returns <see langword="null"/>.</remarks>
+        </member>
+        <member name="P:Microsoft.Azure.Jobs.Host.Protocols.ServiceBusTriggerParameterDescriptor.TopicName">
+            <summary>Gets or sets the name of the queue.</summary>
+            <remarks>When binding to a queue, returns <see langword="null"/>.</remarks>
+        </member>
+        <member name="P:Microsoft.Azure.Jobs.Host.Protocols.ServiceBusTriggerParameterDescriptor.SubscriptionName">
+            <summary>Gets or sets the name of the subscription in <see cref="P:Microsoft.Azure.Jobs.Host.Protocols.ServiceBusTriggerParameterDescriptor.TopicName"/>.</summary>
+            <remarks>When binding to a queue, returns <see langword="null"/>.</remarks>
+        </member>
+        <member name="T:Microsoft.Azure.Jobs.Host.Protocols.StorageConnectionStringDescriptor">
+            <summary>Represents an Azure Storage account connection string.</summary>
+        </member>
+        <member name="P:Microsoft.Azure.Jobs.Host.Protocols.StorageConnectionStringDescriptor.Account">
+            <summary>Gets or sets the account name of the connection string.</summary>
+        </member>
+        <member name="P:Microsoft.Azure.Jobs.Host.Protocols.StorageConnectionStringDescriptor.ConnectionString">
+            <summary>Gets or sets the connection string value.</summary>
+        </member>
+        <member name="T:Microsoft.Azure.Jobs.Host.Protocols.StorageExceptionExtensions">
+            <summary>Provides extension methods for the <see cref="T:Microsoft.WindowsAzure.Storage.StorageException"/> class.</summary>
+        </member>
+        <member name="M:Microsoft.Azure.Jobs.Host.Protocols.StorageExceptionExtensions.IsConflict(Microsoft.WindowsAzure.Storage.StorageException)">
+            <summary>Determines whether the exception is due to a 409 Conflict error.</summary>
+            <param name="exception">The storage exception.</param>
+            <returns>
+            <see langword="true"/> if the exception is due to a 409 Conflict error; otherwise <see langword="false"/>.
+            </returns>
+        </member>
+        <member name="M:Microsoft.Azure.Jobs.Host.Protocols.StorageExceptionExtensions.IsNotFound(Microsoft.WindowsAzure.Storage.StorageException)">
+            <summary>Determines whether the exception is due to a 404 Not Found error.</summary>
+            <param name="exception">The storage exception.</param>
+            <returns>
+            <see langword="true"/> if the exception is due to a 404 Not Found error; otherwise <see langword="false"/>.
+            </returns>
+        </member>
+        <member name="M:Microsoft.Azure.Jobs.Host.Protocols.StorageExceptionExtensions.IsPreconditionFailed(Microsoft.WindowsAzure.Storage.StorageException)">
+            <summary>Determines whether the exception is due to a 412 Precondition Failed error.</summary>
+            <param name="exception">The storage exception.</param>
+            <returns>
+            <see langword="true"/> if the exception is due to a 412 Precondition Failed error; otherwise
+            <see langword="false"/>.
+            </returns>
+        </member>
+        <member name="T:Microsoft.Azure.Jobs.Host.Protocols.TableEntityParameterDescriptor">
+            <summary>Represents a parameter bound to a table entity in Azure Storage.</summary>
+        </member>
+        <member name="P:Microsoft.Azure.Jobs.Host.Protocols.TableEntityParameterDescriptor.AccountName">
+            <summary>Gets or sets the name of the storage account.</summary>
+        </member>
+        <member name="P:Microsoft.Azure.Jobs.Host.Protocols.TableEntityParameterDescriptor.TableName">
+            <summary>Gets or sets the name of the table.</summary>
+        </member>
+        <member name="P:Microsoft.Azure.Jobs.Host.Protocols.TableEntityParameterDescriptor.PartitionKey">
+            <summary>Gets or sets the partition key of the entity.</summary>
+        </member>
+        <member name="P:Microsoft.Azure.Jobs.Host.Protocols.TableEntityParameterDescriptor.RowKey">
+            <summary>Gets or sets the row key of the entity.</summary>
+        </member>
+        <member name="T:Microsoft.Azure.Jobs.Host.Protocols.TableParameterDescriptor">
+            <summary>Represents a parameter bound to a table in Azure Storage.</summary>
+        </member>
+        <member name="P:Microsoft.Azure.Jobs.Host.Protocols.TableParameterDescriptor.AccountName">
+            <summary>Gets or sets the name of the storage account.</summary>
+        </member>
+        <member name="P:Microsoft.Azure.Jobs.Host.Protocols.TableParameterDescriptor.TableName">
+            <summary>Gets or sets the name of the table.</summary>
+        </member>
+        <member name="P:Microsoft.Azure.Jobs.Host.Protocols.TableParameterDescriptor.Access">
+            <summary>Gets or sets the kind of access the parameter has to the table.</summary>
+        </member>
+        <member name="T:Microsoft.Azure.Jobs.Host.Protocols.TextParameterLog">
+            <summary>Represents a function parameter log stored as text.</summary>
+        </member>
+        <member name="P:Microsoft.Azure.Jobs.Host.Protocols.TextParameterLog.Value">
+            <summary>Gets or sets the log contents.</summary>
+        </member>
+        <member name="T:Microsoft.Azure.Jobs.Host.Protocols.WebJobRunIdentifier">
+            <summary>Represents an identifier for a WebJob.</summary>
+        </member>
+        <member name="M:Microsoft.Azure.Jobs.Host.Protocols.WebJobRunIdentifier.#ctor">
+            <summary>Initializes a new instance of the <see cref="T:Microsoft.Azure.Jobs.Host.Protocols.WebJobRunIdentifier"/> class.</summary>
+            <remarks>This constructor is only intended for serialization support.</remarks>
+        </member>
+        <member name="M:Microsoft.Azure.Jobs.Host.Protocols.WebJobRunIdentifier.#ctor(Microsoft.Azure.Jobs.Host.Protocols.WebJobTypes,System.String,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.Azure.Jobs.Host.Protocols.WebJobRunIdentifier"/> class with the values provided.
+            </summary>
+            <param name="jobType">The job type.</param>
+            <param name="jobName">The job name.</param>
+            <param name="runId">The job run ID.</param>
+        </member>
+        <member name="M:Microsoft.Azure.Jobs.Host.Protocols.WebJobRunIdentifier.#ctor(System.String,Microsoft.Azure.Jobs.Host.Protocols.WebJobTypes,System.String,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.Azure.Jobs.Host.Protocols.WebJobRunIdentifier"/> class with the values provided.
+            </summary>
+            <param name="websiteName">The website name.</param>
+            <param name="jobType">The job type.</param>
+            <param name="jobName">The job name.</param>
+            <param name="runId">The job run ID.</param>
+        </member>
+        <member name="M:Microsoft.Azure.Jobs.Host.Protocols.WebJobRunIdentifier.GetKey">
+            <summary>Gets a key containing the full web job identifier.</summary>
+            <returns>A key containing the full web job identifier.</returns>
+        </member>
+        <member name="P:Microsoft.Azure.Jobs.Host.Protocols.WebJobRunIdentifier.WebSiteName">
+            <summary>Gets or sets the website name.</summary>
+        </member>
+        <member name="P:Microsoft.Azure.Jobs.Host.Protocols.WebJobRunIdentifier.JobType">
+            <summary>Gets or sets the WebJob type.</summary>
+        </member>
+        <member name="P:Microsoft.Azure.Jobs.Host.Protocols.WebJobRunIdentifier.JobName">
+            <summary>Gets or sets the job name.</summary>
+        </member>
+        <member name="P:Microsoft.Azure.Jobs.Host.Protocols.WebJobRunIdentifier.RunId">
+            <summary>Gets or sets the job run ID.</summary>
+        </member>
+        <member name="P:Microsoft.Azure.Jobs.Host.Protocols.WebJobRunIdentifier.Current">
+            <summary>Gets an identifier for the current web job run, if any.</summary>
+        </member>
+        <member name="T:Microsoft.Azure.Jobs.Host.Protocols.WebJobTypes">
+            <summary>Represents the WebJob type.</summary>
+        </member>
+        <member name="F:Microsoft.Azure.Jobs.Host.Protocols.WebJobTypes.Triggered">
+            <summary>The WebJob runs when triggered.</summary>
+        </member>
+        <member name="F:Microsoft.Azure.Jobs.Host.Protocols.WebJobTypes.Continuous">
+            <summary>The WebJob runs continuously.</summary>
+        </member>
+        <member name="T:Microsoft.Azure.Jobs.Host.Protocols.WebSitesKnownKeyNames">
+            <summary>Defines well-known environment variable names for Azure Web Sites data.</summary>
+        </member>
+        <member name="F:Microsoft.Azure.Jobs.Host.Protocols.WebSitesKnownKeyNames.WebSiteNameKey">
+            <summary>An environment variable containing the Web Site name.</summary>
+        </member>
+        <member name="F:Microsoft.Azure.Jobs.Host.Protocols.WebSitesKnownKeyNames.JobDataPath">
+            <summary>An environment variable containing the path to WebJobs data.</summary>
+        </member>
+        <member name="F:Microsoft.Azure.Jobs.Host.Protocols.WebSitesKnownKeyNames.JobNameKey">
+            <summary>An environment variable containing the WebJobs name.</summary>
+        </member>
+        <member name="F:Microsoft.Azure.Jobs.Host.Protocols.WebSitesKnownKeyNames.JobTypeKey">
+            <summary>An environment variable containing the WebJobs type.</summary>
+        </member>
+        <member name="F:Microsoft.Azure.Jobs.Host.Protocols.WebSitesKnownKeyNames.JobRunIdKey">
+            <summary>An environment variable containing the WebJobs run ID.</summary>
+        </member>
+        <member name="M:Microsoft.Azure.Jobs.Host.Blobs.Bindings.SelfWatchCloudBlobStream.Complete">
+            <summary>Commits the stream as appropriate (when written to or explicitly closed).</summary>
+            <returns><see langword="true"/> when the stream was committed; otherwise, <see langword="false"/></returns>
+        </member>
+        <member name="M:Microsoft.Azure.Jobs.Host.PropertyHelper.#ctor(System.Reflection.PropertyInfo)">
+            <summary>
+            Initializes a fast property helper. This constructor does not cache the helper.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Azure.Jobs.Host.PropertyHelper.MakeFastPropertySetter``1(System.Reflection.PropertyInfo)">
+            <summary>
+            Creates a single fast property setter. The result is not cached.
+            </summary>
+            <param name="propertyInfo">propertyInfo to extract the getter for.</param>
+            <returns>a fast setter.</returns>
+            <remarks>This method is more memory efficient than a dynamically compiled lambda, and about the same speed.</remarks>
+        </member>
+        <member name="M:Microsoft.Azure.Jobs.Host.PropertyHelper.GetProperties(System.Object)">
+            <summary>
+            Creates and caches fast property helpers that expose getters for every public get property on the underlying type.
+            </summary>
+            <param name="instance">the instance to extract property accessors for.</param>
+            <returns>a cached array of all public property getters from the underlying type of this instance.</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Jobs.Host.PropertyHelper.MakeFastPropertyGetter(System.Reflection.PropertyInfo)">
+            <summary>
+            Creates a single fast property getter. The result is not cached.
+            </summary>
+            <param name="propertyInfo">propertyInfo to extract the getter for.</param>
+            <returns>a fast getter.</returns>
+            <remarks>This method is more memory efficient than a dynamically compiled lambda, and about the same speed.</remarks>
+        </member>
+        <member name="M:Microsoft.Azure.Jobs.Host.QueueNames.GetHostQueueName(System.Guid)">
+            <summary>Gets the host instance queue name.</summary>
+            <param name="hostId">The host ID.</param>
+            <returns>The host instance queue name.</returns>
+        </member>
+        <member name="T:Microsoft.Azure.Jobs.IIntervalSeparationCommand">
+            <summary>Defines a command that occurs at an interval that may change with every execution.</summary>
+        </member>
+        <member name="M:Microsoft.Azure.Jobs.IIntervalSeparationCommand.Execute">
+            <summary>Executes the command.</summary>
+            <remarks>Calling this method may result in an updated <see cref="P:Microsoft.Azure.Jobs.IIntervalSeparationCommand.SeparationInterval"/>.</remarks>
+        </member>
+        <member name="P:Microsoft.Azure.Jobs.IIntervalSeparationCommand.SeparationInterval">
+            <summary>Returns the current interval to wait before running <see cref="M:Microsoft.Azure.Jobs.IIntervalSeparationCommand.Execute"/> again.</summary>
+        </member>
+        <member name="T:Microsoft.Azure.Jobs.ICanFailCommand">
+            <summary>Defines a command that may fail gracefully.</summary>
+        </member>
+        <member name="M:Microsoft.Azure.Jobs.ICanFailCommand.TryExecute">
+            <summary>Attempts to execute the command.</summary>
+            <returns><see langword="false"/> if the command fails gracefully; otherwise <see langword="true"/>.</returns>
+            <remarks>This method returns <see langword="false"/> rather than throwing to indicate a graceful failure.</remarks>
+        </member>
+        <member name="T:Microsoft.Azure.Jobs.INameResolver">
+            <summary>
+            Resolve %name% in the endpoints.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Azure.Jobs.INameResolver.Resolve(System.String)">
+            <summary>
+            Resolve a %name% to a value . Resolution is not recursive.
+            </summary>
+            <param name="name">The name to resolve (without the %... %)</param>
+            <returns>the value that the name resolves to. Or Null if the name is not supported.</returns>
+        </member>
+        <member name="T:Microsoft.Azure.Jobs.Host.NameResolverExtensions">
+            <summary>Contains extension methods for INameResolver.</summary>
+        </member>
+        <member name="M:Microsoft.Azure.Jobs.Host.NameResolverExtensions.ResolveWholeString(Microsoft.Azure.Jobs.INameResolver,System.String)">
+            <summary>
+            Resolve all %% matches within a string.
+            </summary>
+            <param name="resolver">resolver to apply to each name</param>
+            <param name="wholeString">the input string. IE, "start%name1%...%name2%end"</param>
+            <returns>The resolved string. IE, "startA...Bend" </returns>
+        </member>
+        <member name="T:Microsoft.Azure.Jobs.WebJobsShutdownWatcher">
+            <summary>
+            Helper class for providing a cancellation token for when this WebJob's shutdown is signaled.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Azure.Jobs.WebJobsShutdownWatcher.#ctor">
+            <summary>
+            Begin watching for a shutdown notification from Antares.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Azure.Jobs.WebJobsShutdownWatcher.Dispose">
+            <summary>
+            Stop watching for the shutdown notification
+            </summary>
+        </member>
+        <member name="P:Microsoft.Azure.Jobs.WebJobsShutdownWatcher.Token">
+            <summary>
+            Get a CancellationToken that is signaled when the shutdown notification is detected.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Azure.Jobs.JobHostConfiguration">
+            <summary>Represents the configuration settings for a <see cref="T:Microsoft.Azure.Jobs.JobHost"/>.</summary>
+        </member>
+        <member name="M:Microsoft.Azure.Jobs.JobHostConfiguration.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.Azure.Jobs.JobHostConfiguration"/> class, using a single Microsoft Azure
+            Storage connection string for both reading and writing data as well as logging.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Azure.Jobs.JobHostConfiguration.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.Azure.Jobs.JobHostConfiguration"/> class, using a single Microsoft Azure
+            Storage connection string for both reading and writing data as well as logging.
+            </summary>
+            <param name="dashboardAndStorageConnectionString">
+            The Azure Storage connection string for accessing data and logging.
+            </param>
+        </member>
+        <member name="M:Microsoft.Azure.Jobs.JobHostConfiguration.GetService(System.Type)">
+            <summary>Gets the service object of the specified type.</summary>
+            <param name="serviceType">The type of service object to get.</param>
+            <returns>
+            A service object of the specified type, if one is available; otherwise, <see langword="null"/>.
+            </returns>
+        </member>
+        <member name="P:Microsoft.Azure.Jobs.JobHostConfiguration.DashboardConnectionString">
+            <summary>Gets or sets the Azure Storage connection string used for logging and diagnostics.</summary>
+        </member>
+        <member name="P:Microsoft.Azure.Jobs.JobHostConfiguration.StorageConnectionString">
+            <summary>Gets or sets the Azure Storage connection string used for reading and writing data.</summary>
+        </member>
+        <member name="P:Microsoft.Azure.Jobs.JobHostConfiguration.ServiceBusConnectionString">
+            <summary>Gets or sets the Azure Service bus connection string.</summary>
+        </member>
+        <member name="P:Microsoft.Azure.Jobs.JobHostConfiguration.TypeLocator">
+            <summary>Gets or sets the type locator.</summary>
+        </member>
+        <member name="P:Microsoft.Azure.Jobs.JobHostConfiguration.NameResolver">
+            <summary>
+            Gets or sets the name resolver used during indexing. 
+            </summary>
+        </member>
+        <member name="M:Microsoft.Azure.Jobs.Host.Runners.AmbientConnectionStringProvider.GetConnectionString(System.String)">
+            <summary>
+            Reads a connection string from the connectionStrings configuration section, or from an environment variable
+            if it is missing from the configuration file, or is an empty string.
+            </summary>
+            <param name="connectionStringName">The name of the connection string to look up.</param>
+            <returns>The connection string, or <see langword="null"/> if no connection string was found.</returns>
+        </member>
+        <member name="T:Microsoft.Azure.Jobs.IHostTable">
+            <summary>Defines a table that maps a host name to an ID.</summary>
+            <remarks>
+            The host GUID serves as an key for lookup purposes, such as for host heartbeats and invocation queues.
+            </remarks>
+        </member>
+        <member name="M:Microsoft.Azure.Jobs.Host.Runners.DefaultConnectionStringProvider.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.Azure.Jobs.JobHostConfiguration"/> class, using a single Microsoft Azure
+            Storage connection string for both reading and writing data as well as logging.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Azure.Jobs.Host.Runners.DefaultConnectionStringProvider.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.Azure.Jobs.JobHostConfiguration"/> class, using a single Microsoft Azure
+            Storage connection string for both reading and writing data as well as logging.
+            </summary>
+            <param name="dashboardAndStorageConnectionString">
+            The Azure Storage connection string for accessing data and logging.
+            </param>
+        </member>
+        <member name="P:Microsoft.Azure.Jobs.Host.Runners.DefaultConnectionStringProvider.DashboardConnectionString">
+            <summary>Gets or sets the Azure Storage connection string used for logging and diagnostics.</summary>
+        </member>
+        <member name="P:Microsoft.Azure.Jobs.Host.Runners.DefaultConnectionStringProvider.StorageConnectionString">
+            <summary>Gets or sets the Azure Storage connection string used for reading and writing data.</summary>
+        </member>
+        <member name="P:Microsoft.Azure.Jobs.Host.Runners.DefaultConnectionStringProvider.ServiceBusConnectionString">
+            <summary>Gets or sets the Azure Service bus connection string.</summary>
+        </member>
+        <member name="T:Microsoft.Azure.Jobs.IntervalSeparationTimer">
+            <summary>Represents a timer that keeps a heartbeat running at a specified interval using a separate thread.</summary>
+        </member>
+        <member name="T:Microsoft.Azure.Jobs.JobHost">
+            <summary>
+            Defines properties and methods to locate Job methods and listen to trigger events in order
+            to execute Job methods.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Azure.Jobs.JobHost.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.Azure.Jobs.JobHost"/> class, using a Microsoft Azure Storage connection
+            string located in the connectionStrings section of the configuration file or in environment variables.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Azure.Jobs.JobHost.#ctor(Microsoft.Azure.Jobs.JobHostConfiguration)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.Azure.Jobs.JobHost"/> class using the configuration provided.
+            </summary>
+            <param name="configuration">The job host configuration.</param>
+        </member>
+        <member name="M:Microsoft.Azure.Jobs.JobHost.#ctor(System.IServiceProvider)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.Azure.Jobs.JobHost"/> class using the service provider provided.
+            </summary>
+            <param name="serviceProvider">The service provider.</param>
+        </member>
+        <member name="M:Microsoft.Azure.Jobs.JobHost.RunOnBackgroundThread">
+            <summary>
+            Runs the jobs on a background thread and return immediately.
+            The trigger listeners and jobs will execute on the background thread.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Azure.Jobs.JobHost.RunOnBackgroundThread(System.Threading.CancellationToken)">
+            <summary>
+            Runs the jobs on a background thread and return immediately.
+            The trigger listeners and jobs will execute on the background thread.
+            The thread exits when the cancellation token is signalled.
+            </summary>
+            <param name="token">The token to monitor for cancellation requests.</param>
+        </member>
+        <member name="M:Microsoft.Azure.Jobs.JobHost.RunAndBlock">
+            <summary>
+            Runs the jobs on the current thread.
+            The trigger listeners and jobs will execute on the current thread.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Azure.Jobs.JobHost.RunAndBlock(System.Threading.CancellationToken)">
+            <summary>
+            Runs the jobs on the current thread.
+            The trigger listeners and jobs will execute on the current thread.
+            The thread will be blocked until the cancellation token is signalled.
+            </summary>
+            <param name="token">The token to monitor for cancellation requests.</param>
+        </member>
+        <member name="M:Microsoft.Azure.Jobs.JobHost.Call(System.Reflection.MethodInfo)">
+            <summary>Invokes a job function.</summary>
+            <param name="method">A MethodInfo representing the job method to execute.</param>
+        </member>
+        <member name="M:Microsoft.Azure.Jobs.JobHost.Call(System.Reflection.MethodInfo,System.Object)">
+            <summary>Invokes a job function.</summary>
+            <param name="method">A MethodInfo representing the job method to execute.</param>
+            <param name="arguments">
+            An object with public properties representing argument names and values to bind to parameters in the job
+            method.
+            </param>
+        </member>
+        <member name="M:Microsoft.Azure.Jobs.JobHost.Call(System.Reflection.MethodInfo,System.Collections.Generic.IDictionary{System.String,System.Object})">
+            <summary>Invokes a job function.</summary>
+            <param name="method">A MethodInfo representing the job method to execute.</param>
+            <param name="arguments">The argument names and values to bind to parameters in the job method.</param>
+        </member>
+        <member name="M:Microsoft.Azure.Jobs.JobHost.Call(System.Reflection.MethodInfo,System.Object,System.Threading.CancellationToken)">
+            <summary>Invokes a job function.</summary>
+            <param name="method">A MethodInfo representing the job method to execute.</param>
+            <param name="arguments">An object with public properties representing argument names and values to bind to the parameter tokens in the job method's arguments.</param>
+            <param name="cancellationToken">The token to monitor for cancellation requests.</param>
+        </member>
+        <member name="M:Microsoft.Azure.Jobs.JobHost.Call(System.Reflection.MethodInfo,System.Collections.Generic.IDictionary{System.String,System.Object},System.Threading.CancellationToken)">
+            <summary>Invokes a job function.</summary>
+            <param name="method">A MethodInfo representing the job method to execute.</param>
+            <param name="arguments">The argument names and values to bind to parameters in the job method.</param>
+            <param name="cancellationToken">The token to monitor for cancellation requests.</param>
+        </member>
+        <member name="M:Microsoft.Azure.Jobs.DefaultStorageValidator.TryValidateConnectionString(System.String,System.String@)">
+            <summary>
+            Validate a Microsoft Azure Storage connection string, by parsing it, and placing
+            a call to Azure to assert the credentials validity as well.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Azure.Jobs.ITypeLocator">
+            <summary>Defines a locator that identifies types that may contain functions for <see cref="T:Microsoft.Azure.Jobs.JobHost"/> to execute.</summary>
+        </member>
+        <member name="M:Microsoft.Azure.Jobs.ITypeLocator.GetTypes">
+            <summary>Retrieves types that may contain functions for <see cref="T:Microsoft.Azure.Jobs.JobHost"/> to execute.</summary>
+            <returns>Types that may contain functions for <see cref="T:Microsoft.Azure.Jobs.JobHost"/> to execute.</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Jobs.QueueClient.ValidateQueueName(System.String)">
+            <summary>
+            Ensures that the passed name is a valid queue name.
+            If not, an ArgumentException is thrown
+            </summary>
+            <exception cref="T:System.ArgumentException">If the name is invalid</exception>
+            <param name="name">The name to be tested</param>
+        </member>
+        <member name="M:Microsoft.Azure.Jobs.Host.Runners.WebSitesExecuteFunction.HandleFunctionReturnValue(System.Reflection.MethodInfo,System.Object,System.IO.TextWriter)">
+            <summary>
+            Handles the function return value and logs it, if necessary
+            </summary>
+        </member>
+        <member name="T:Microsoft.Azure.Jobs.Credentials">
+            <summary>
+            Store all sensitive information in one spot.  
+            </summary>
+        </member>
+        <member name="P:Microsoft.Azure.Jobs.Credentials.StorageConnectionString">
+            <summary>
+            The azure storage account connection string that blob and queue triggers bind against. 
+            </summary>
+        </member>
+        <member name="T:Microsoft.Azure.Jobs.TriggerType">
+            <summary>
+            Define the kind of trigger
+            </summary>
+        </member>
+        <member name="F:Microsoft.Azure.Jobs.TriggerType.Blob">
+            <summary>
+            Blob trigger, invoked when an input blob is detected. 
+            </summary>
+        </member>
+        <member name="F:Microsoft.Azure.Jobs.TriggerType.Queue">
+            <summary>
+            Queue Trigger, invoked when a new queue mesasge is detected
+            </summary>
+        </member>
+        <member name="F:Microsoft.Azure.Jobs.TriggerType.ServiceBus">
+            <summary>
+            Service Bus trigger, on a message in a subscription or queue.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Azure.Jobs.TriggerRaw">
+            <summary>
+            Wire protocol for an serializing triggers.
+            Irrelevant fields should reamin null.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Azure.Jobs.TriggerRaw.NewBlob(System.String,System.String)">
+            <summary>
+            Create a new trigger on blobs. This fires the callback if a new input blob is detected. The http content is the string name of the blob path that was detected. 
+            For example, if input is 'container/{name}.txt', and output is 'container/outputs/{nane}.txt;
+            </summary>
+            <param name="blobInput">An input path to search for. The blob name can include 'route parameters' for pattern matching, is and of the form 'container/blob'. </param>
+            <param name="blobOutput">A semicolon delimited list of output paths. The trigger is not fired if all outputs are newer than the input. 
+            This can have route parameters which are populated from the capture at the input values.</param>
+            <returns>A trigger object.</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Jobs.TriggerRaw.NewQueue(System.String)">
+            <summary>
+            Create a new trigger on queue message. This fires the callback when a new queue message is detected, where the http request contents are the azure queue message contents. 
+            The azure message is deleted if the callback is invoked. 
+            </summary>
+            <param name="queueName">The azure queue to listen on. Be sure to adhere to azure queue naming rules, including being all lowercase.</param>
+            <returns>A trigger object.</returns>
+        </member>
+        <member name="P:Microsoft.Azure.Jobs.TriggerRaw.Type">
+            <summary>
+            Define what type of trigger. 
+            Serializing can emit as either the raw number or the name.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Azure.Jobs.TriggerRaw.BlobInput">
+            <summary>
+            For Blobs, blob path for the input. This is of the form "container/blob"
+            </summary>
+        </member>
+        <member name="P:Microsoft.Azure.Jobs.TriggerRaw.BlobOutput">
+            <summary>
+            For Blobs, optional. semicolon delimited list of blob paths for the output. This is of the form 
+            "container1/blob1;container2/blob2"
+            The trigger is not fired if all outputs have a more recent modified timestamp than the input. 
+            </summary>
+        </member>
+        <member name="P:Microsoft.Azure.Jobs.TriggerRaw.QueueName">
+            <summary>
+            For Queues. The name of the azure queue. Be sure to follow azure queue naming rules, including all lowercase.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Azure.Jobs.TriggerRaw.EntityName">
+            <summary>
+            For Service Bus. The name of the entity (queue or topic/subscription).
+            </summary>
+        </member>
+    </members>
+</doc>

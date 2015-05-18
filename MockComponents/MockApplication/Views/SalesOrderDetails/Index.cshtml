@@ -1,0 +1,46 @@
+﻿@model IEnumerable<MockApplication.Data.SalesOrderDetail>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.SalesOrderId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProductId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CustomerId)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.SalesOrderId)
+        </td>
+        <td>
+            @Html.ActionLink(item.ProductId.ToString(), "Details", "Products", new { id = item.ProductId }, null)
+        </td>
+        <td>
+            @Html.ActionLink(item.CustomerId.ToString(), "Details", "Customers", new { id = item.CustomerId }, null)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.SalesOrderId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.SalesOrderId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.SalesOrderId })
+        </td>
+    </tr>
+}
+
+</table>

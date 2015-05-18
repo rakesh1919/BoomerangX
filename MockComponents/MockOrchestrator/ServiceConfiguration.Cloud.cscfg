@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ServiceConfiguration serviceName="MockOrchestrator" xmlns="http://schemas.microsoft.com/ServiceHosting/2008/10/ServiceConfiguration" osFamily="4" osVersion="*" schemaVersion="2014-06.2.4">
+  <Role name="Services">
+    <Instances count="1" />
+    <ConfigurationSettings />
+  </Role>
+  <Role name="Adminstration">
+    <Instances count="1" />
+    <ConfigurationSettings />
+  </Role>
+  <Role name="BackgroundEngine">
+    <Instances count="1" />
+    <ConfigurationSettings />
+  </Role>
+</ServiceConfiguration>
